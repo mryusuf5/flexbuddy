@@ -1,0 +1,58 @@
+.backgroundDrink1{
+    position: absolute;
+    top: 50%;
+    left: -20%;
+    rotate: 45deg;
+    opacity: .2;
+    scale: .75;
+    transform: translate(-50%, -50%);
+}
+.backgroundDrink2{
+    position: absolute;
+    top: 50%;
+    right: -20%;
+    rotate: 320deg;
+    opacity: .2;
+    scale: .75;
+    transform: translate(-50%, -50%);
+}
+
+.backgroundDrink3{
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    rotate: -20deg;
+    opacity: .2;
+    scale: .75;
+    transform: translate(-50%, -50%);
+}
+
+.backgroundDrink4{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    rotate: 20deg;
+    opacity: .2;
+    scale: .75;
+    transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 992px) {
+    .backgroundDrink1{
+        top: 10%;
+        scale: .5;
+    }
+
+    .backgroundDrink2{
+        top: 75%;
+        scale: .5;
+    }
+
+    .backgroundDrink3{
+        opacity: 0;
+    }
+
+    .backgroundDrink4{
+        opacity: 0;
+    }
+}
