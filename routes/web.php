@@ -3,6 +3,8 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductimagesController;
+use App\Http\Controllers\ProductoptionsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,22 @@ use App\Http\Controllers\ProductsController;
 */
 
 Route::get('/', [ProductcategoriesController::class, 'userIndex'])->name('home');
+
+Route::get("/magic-truffles", function(){
+    return view("user.magic-truffles");
+})->name("magic-truffles");
+Route::get("/anti-spam", function(){
+    return view("user.antiSpam");
+})->name("antiSpam");
+Route::get("/disclaimer", function(){
+    return view("user.disclaimer");
+})->name("disclaimer");
+Route::get("/algemene-voorwaarden", function(){
+    return view("user.terms");
+})->name("terms");
+Route::get("/veel-gestelde-vragen", function(){
+    return view("user.faq");
+})->name("faq");
 
 Route::get('/login', [UserController::class, 'loginView'])->name('loginView');
 Route::post('/login', [UserController::class, 'login'])->name('login');
@@ -52,6 +70,8 @@ Route::prefix('/admin')->name('admin.')->middleware('IsAdmin')->group(function()
     Route::resource('productcategories', ProductcategoriesController::class);
     Route::resource('products', ProductsController::class);
     Route::resource('orders', OrdersController::class);
+    Route::resource("productoptions", ProductoptionsController::class);
+    Route::resource("productimages", ProductimagesController::class);
 });
 
 

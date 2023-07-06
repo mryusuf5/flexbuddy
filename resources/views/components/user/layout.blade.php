@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/e0462e4fee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     @yield('userStyles')
-    <title>Prime webshop</title>
+    <title>Socrates Microdose</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-light d-block" id="templatemo_nav_top">
@@ -22,22 +22,14 @@
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none"
-                       href="mailto:info@company.com">info@primeshop.com</a>
-                    <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">+32 412 345 678</a>
+                       href="mailto:so-cratesmd@hotmail.com">so-cratesmd@hotmail.com</a>
                 </div>
                 <div>
-                    <a class="text-light" href="https://fb.com/templatemo" target="_blank">
+                    <a class="text-light" href="https://www.facebook.com/jelle.zeegers" target="_blank">
                         <i class="fab fa-facebook-f fa-sm fa-fw me-2"></i>
                     </a>
-                    <a class="text-light" href="https://www.instagram.com/" target="_blank">
+                    <a class="text-light" href="https://www.instagram.com/socrates_microdose/" target="_blank">
                         <i class="fab fa-instagram fa-sm fa-fw me-2"></i>
-                    </a>
-                    <a class="text-light" href="https://twitter.com/" target="_blank">
-                        <i class="fab fa-twitter fa-sm fa-fw me-2"></i>
-                    </a>
-                    <a class="text-light" href="https://www.linkedin.com/" target="_blank">
-                        <i class="fab fa-linkedin fa-sm fa-fw"></i>
                     </a>
                 </div>
             </div>
@@ -47,14 +39,14 @@
 
 
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
+    <nav class="navbar navbar-expand-lg navbar-light shadow bg-dark">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="{{route('home')}}">
-                Prime
+            <a class="navbar-brand logo h1 align-self-center" href="{{route('home')}}">
+                <img src="{{asset("img/socrates-seperate.png")}}" alt="">
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler border-0 bg-white" type="button" data-bs-toggle="collapse"
                     data-bs-target="#templatemo_main_nav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,32 +56,28 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{Route::is('home') ? 'text-success' : ''}}"
+                            <a class="nav-link text-white"
                                href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{Route::is('productcategories.index') || Route::is('user.productcategories.show')
-                                                || Route::is('productcategories.show') ? 'text-success' : ''}}"
-                               href="{{route('productcategories.index')}}">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link text-white"
+                               href="{{route('productcategories.index')}}">Producten</a>
                         </li>
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
                     <a class="nav-icon position-relative text-decoration-none" href="{{route('carts.index')}}">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <i class="fa fa-fw fa-cart-arrow-down text-white mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light
                         text-dark">{{Session::get('cart') ? count(Session::get('cart')) : 0}}</span>
                     </a>
                     @if(!Session::get('admin'))
                         <a class="nav-icon position-relative text-decoration-none" href="{{route('loginView')}}">
-                            <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                            <i class="fa fa-fw fa-user text-white mr-3"></i>
                         </a>
                     @else
                         <a href="{{route('logout')}}" class="ms-2">
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-right-from-bracket text-white"></i>
                         </a>
                     @endif
                 </div>

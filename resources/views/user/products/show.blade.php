@@ -6,7 +6,16 @@
                     text-decoration-none mt-5 col-12"><i class="fa-solid fa-chevron-left"></i> Back</a>
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="{{asset('img/product/' . $product->image)}}" style="height: 400px; object-fit: contain">
+                        <img class="card-img img-fluid" src="{{asset('img/product/' . $product->image)}}"
+                             style="height: 400px; object-fit: cover" id="productImage">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <img src="{{asset("img/product/" . $product->image)}}" height="75" width="75"
+                             style="object-fit: cover" onclick="replaceImage(this)" id="{{$product->image}}">
+                        @foreach($product->productimages as $image)
+                            <img onclick="replaceImage(this)" src="{{asset("img/product/" . $image->image)}}"
+                                 height="75" width="75" style="object-fit: cover" id="{{$image->image}}">
+                        @endforeach
                     </div>
                 </div>
                 <!-- col end -->
@@ -16,15 +25,25 @@
                             <h1 class="h2">{{$product->name}}</h1>
                             <p class="h3 py-2" id="price">&euro; {{number_format($product->price, 2, ',', '.')}}</p>
 
-                            <h6>Description:</h6>
-                            <p>{{$product->description}}</p>
-                            <form action="{{route('carts.add')}}" method="post">
+                            <p>{!! $product->description !!}</p>
+
+                            <form action="{{route('carts.add')}}" method="post" class="mt-2">
+
+                                <div class="d-flex flex-column gap-2 my-2">
+                                    @foreach($product->productoptions as $option)
+                                        <input type="radio" class="btn-check" value="{{$option->id}}"
+                                               data-price="{{number_format($option->price, 2)}}" id="{{$option->name}}"
+                                               name="product_option" checked="">
+                                        <label class="btn btn-outline-dark" for="{{$option->name}}">{{$option->name}}</label>
+                                    @endforeach
+                                </div>
+
                                 @csrf
                                 @method('POST')
                                 <div class="row pb-3">
                                     <div class="col d-grid">
                                         <input type="text" hidden name="product_id" value="{{$product->id}}">
-                                        <input type="number" data-price="{{$product->price}}" id="amount"
+                                        <input type="number" id="amount"
                                                class="form-control" placeholder="Amount" value="1" name="amount">
                                         <br>
                                         <button type="submit" class="btn btn-success btn-lg" name="submit"
@@ -164,12 +183,22 @@
     @endsection
     @section('userScripts')
         <script>
-            let price = document.querySelector('#price');
-            let amount = document.querySelector('#amount');
+            const productPrice = document.querySelector("#price");
+            productPrice.textContent = "€ " + document.querySelector("input[type='radio'][name=product_option]:checked").dataset.price;
 
-            amount.addEventListener('change', () => {
-                price.innerText = `€ ${(amount.value * amount.dataset.price).toFixed(2)}`;
+            const changePrice = () => {
+                productPrice.textContent = "€ " + document.querySelector("input[type='radio'][name=product_option]:checked").dataset.price;
+            }
+
+            document.querySelectorAll("input[name='product_option']").forEach((input) => {
+                input.addEventListener('change', changePrice);
             })
+
+            let image = document.querySelector("#productImage");
+
+            const replaceImage = (e) => {
+                image.src = `http://127.0.0.1:8000/img/product/${e.id}`;
+            }
         </script>
     @endsection
 </x-user.layout>

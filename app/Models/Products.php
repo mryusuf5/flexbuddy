@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Productcategories;
 
 class Products extends Model
 {
@@ -18,5 +17,15 @@ class Products extends Model
     public function reviews()
     {
         return $this->hasMany(reviews::class, 'product_id');
+    }
+
+    public function productoptions()
+    {
+        return $this->hasMany(Productoptions::class, "product_id");
+    }
+
+    public function productimages()
+    {
+        return $this->hasMany(Productimages::class, "product_id");
     }
 }

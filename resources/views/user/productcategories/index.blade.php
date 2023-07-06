@@ -4,7 +4,7 @@
             <div class="col-lg-3">
                 <a href="{{route('productcategories.index')}}" class="text-decoration-none
                 {{Route::is('productcategories.index') ? 'text-success' : 'text-dark'}}">
-                    <h1 class="h2 pb-4">Categories</h1>
+{{--                    <h1 class="h2 pb-4">Categories</h1>--}}
                 </a>
                 <x-user.categories :productcategories="$productcategories"></x-user.categories>
             </div>
@@ -15,8 +15,6 @@
                         <x-user.product-card>
                             <x-slot name="image">{{$product->image}}</x-slot>
                             <x-slot name="name">{{$product->name}}</x-slot>
-                            <x-slot name="price">{{number_format($product->price, 2, ',', '.')}}</x-slot>
-                            <x-slot name="description">{{$product->description}}</x-slot>
                             <x-slot name="routeId">{{$product->id}}</x-slot>
                         </x-user.product-card>
                     @endforeach

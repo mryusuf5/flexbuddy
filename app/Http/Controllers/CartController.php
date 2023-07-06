@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Productoptions;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,9 +18,11 @@ class CartController extends Controller
             foreach($cartItems as $index => &$cart)
             {
                 $cart['product'] = Products::where('id', $cart['product']->id)->first();
-                $totalProductsCost += $cart['amount'] * $cart['product']->price;
+
+                $totalProductsCost += $cart['amount'] * $cart['option']->price;
             }
         }
+
         return view('user.carts.index', compact('totalProductsCost'));
     }
 
@@ -31,8 +34,10 @@ class CartController extends Controller
 
         Session::get('cart') !== null ? $cart = Session::get('cart') : $cart = [];
         $product = Products::where('id', $request->product_id)->first();
+        $option = Productoptions::where("id", $request->product_option)->first();
         $cartItem = [
             'product' => $product,
+            'option' => $option,
             'amount' => $request->amount
         ];
         $cart[] = $cartItem;

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Productimages;
+use App\Models\Productoptions;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -29,13 +31,11 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'price' => 'required'
+            'name' => 'required'
         ]);
 
         $product = new Products();
         $product->name = ucfirst($request->name);
-        $product->price = str_replace(',', '.', $request->price);
         $product->description = ucfirst($request->description);
         $product->category_id = $request->category_id;
         $this->checkImage($request, $product);
@@ -49,7 +49,11 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Products::where('id', $id)->with('reviews')->first();
+        $product = Products::where('id', $id)
+            ->with('reviews')
+            ->with("productoptions")
+            ->with("productimages")
+            ->first();
         $productReviewsAverage = 0;
 
         if(count($product->reviews) > 0)
@@ -73,7 +77,11 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Products::where('id', $id)->with('productcategories')->first();
+        $product = Products::where('id', $id)
+            ->with('productcategories')
+            ->with("productoptions")
+            ->with("productimages")
+            ->first();
 
         return view('admin.products.edit', compact('product'));
     }
@@ -84,14 +92,13 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-           'name' => 'required',
-           'price' => 'required'
+           'name' => 'required'
         ]);
 
         $product = Products::where('id', $id)->first();
         $product->name = $request->name;
-        $product->price = $request->price;
         $product->description = $request->description;
+        $this->checkImage($request, $product, true);
         $product->save();
 
         return redirect()->back()->with('success', 'Product aangepast');
@@ -103,21 +110,35 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         Products::destroy($id);
+        Productimages::where("product_id", $id)->delete();
+        Productoptions::where("product_id", $id)->delete();
 
         return redirect()->back()->with('success', 'Product verwijderd');
     }
 
-    public function checkImage($request, $product)
+    public function checkImage($request, $product, $edit = false)
     {
-        if($request->file('image'))
+        if(!$edit)
         {
-            $imageName = 'product-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move('img/product/', $imageName);
-            $product->image = $imageName;
+            if($request->file('image'))
+            {
+                $imageName = 'product-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move('img/product/', $imageName);
+                $product->image = $imageName;
+            }
+            else
+            {
+                $product->image = 'product-default.png';
+            }
         }
         else
         {
-            $product->image = 'product-default.png';
+            if($request->file('image'))
+            {
+                $imageName = 'product-' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move('img/product/', $imageName);
+                $product->image = $imageName;
+            }
         }
     }
 }

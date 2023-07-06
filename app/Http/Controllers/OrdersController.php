@@ -45,6 +45,7 @@ class OrdersController extends Controller
             'country' => 'required',
             'zipcode' => 'required',
             'city' => 'required',
+            'over18' => 'required'
         ]);
 
         $order = new orders();

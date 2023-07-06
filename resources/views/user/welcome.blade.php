@@ -1,117 +1,48 @@
 <x-user.layout>
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last d-flex justify-content-center">
-                            <img class="img-fluid" src="{{asset('img/prime-tropical-punch.png')}}" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Prime drink</b></h1>
-                                <p>Prime drink</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last d-flex justify-content-center">
-                            <img class="img-fluid" src="{{asset('img/prime-vapes.png')}}" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-success">Prime vape</h1>
-                                <p>Prime vape</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-            <i class="fas fa-chevron-left"></i>
-        </a>
-        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-            <i class="fas fa-chevron-right"></i>
-        </a>
+
+    <div class="bg-dark d-flex justify-content-center">
+        <img src="{{asset("img/socrates2.jpg")}}">
     </div>
 
-    <section class="container py-5 position-relative">
-        <img src="{{asset('img/prime-tropical-punch.png')}}" class="backgroundDrink1" alt="">
-        <img src="{{asset('img/prime-vape-mrblue.png')}}" class="backgroundDrink2" alt="">
-        <div class="row text-center pt-3">
-            <div class="col-lg-6 m-auto">
-                <h1 class="h1">Categories</h1>
-                <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </p>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            @foreach($productcategories as $productcategory)
-            <div class="col-12 col-md-4 p-5 mt-3 d-flex flex-column justify-content-center align-items-center">
-                <a href="{{route('productcategories.show', $productcategory->id)}}" style="height: 230px; width: 230px">
-                    <img src="{{asset('img/category/' . $productcategory->image)}}" class="rounded-circle w-100 border" style="object-fit: contain; height: 100%">
-                </a>
-                <h5 class="text-center mt-3 mb-3">{{$productcategory->name}}</h5>
-                <p class="text-center">
-                    <a class="btn btn-success" href="{{route('productcategories.show', $productcategory->id)}}">View</a>
-                </p>
-            </div>
-            @endforeach
-        </div>
-    </section>
+    <div class="d-flex justify-content-center my-4">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/X81-p0i-gPY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
 
-    <section class="bg-light position-relative">
-        <img src="{{asset('img/prime-vape-strawberry.png')}}" class="backgroundDrink3" />
-        <img src="{{asset('img/prime-vape-tropical.png')}}" class="backgroundDrink4" />
-        <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Best sold products</h1>
-                    <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($topProducts as $product)
-                    <div class="col-12 col-md-4 mb-4">
-                        <div class="card h-100">
-                            <a href="{{route('userSingleProduct', $product->id)}}" class="d-flex justify-content-center">
-                                <img src="{{asset('img/product/' . $product->image)}}" class="card-img-top" style="object-fit: contain; width: 200px;">
-                            </a>
-                            <div class="card-body">
-                                <ul class="list-unstyled d-flex justify-content-between">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                    </li>
-                                    <li class="text-muted text-right">&euro; {{number_format($product->price, 2, ',', '.')}}</li>
-                                </ul>
-                                <a href="{{route('userSingleProduct', $product->id)}}" class="h2 text-decoration-none text-dark">{{$product->name}}</a>
-                                <p class="card-text">
-                                    {{Str::limit($product->description, 25)}}
-                                </p>
-                                <p class="text-muted">Reviews (24)</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+
+    <div class="d-flex flex-column p-2 container card">
+        <div class="card-header">
+            Wat zijn Magic Truffles
         </div>
-    </section>
+        <div class="card-body">
+            <p>De officiële naam voor de Magic Truffle is ‘Sclerotium’ (meervoud: ‘Sclerotia’). </p>
+            <p>Op de plek waar paddenstoelen groeien bevindt zich in de grond een groot netwerk van mycelium. Dit mycelium is een schimmel met een witte, draderige stuctuur. Onder de juiste omstandigheden zal dit mycelium zorgen voor de groei van paddestoelen. </p>
+            <p>In wezen is de paddenstoel de vrucht van het mycelium. Sommige soorten paddenstoelen produceren in dit mycelium Magic Truffels. Deze Magic Truffels zijn een compacte massa van verhard mycelium waarin de soort voedsel en water opslaat om daar gebruik van te kunnen maken als de groeiomstandigheden niet optimaal zijn. <a target="_blank" href="https://psychedelicreview.com/comparing-psilocybin-mushrooms-and-truffles-how-are-they-different/" class="text-danger">Meer informatie over het verschil tussen Psilocybine paddestoelen en truffels.</a></p>
+            <p>Socrates is de specialist op het gebied van Microdosing.</p>
+        </div>
+        <div class="card-footer btn btn-success">
+            <a class="btn btn-success" href="/magic-truffles">Meer lezen over Magic truffles</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>My mission:</h2>
+        <div class="d-flex justify-content-center gap-2 flex-xl-row flex-column">
+            <img src="{{asset("img/gebruiksaanwijzing2.png")}}" alt="">
+            <img src="{{asset("img/gebruiksaanwijzing.png")}}" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="d-flex gap-4 flex-lg-row flex-column align-items-center">
+            <div class="d-flex flex-column p-2">
+                <h2>Wat is Microdosing</h2>
+                <p>Een microdosis is een sub-perceptuele (onopvallende) dosis Magic Truffles, die veel mensen in hun wekelijkse routines opnemen.</p>
+                <p>Het idee hierachter is om het niveau van creativiteit, energie en focus te verhogen en het niveau van stress, angst en emotionele instabiliteit te verminderen.</p>
+                <p>Socrates Microdosing verhoogt namelijk de neurale connectiviteit, omdat nieuwe verbindingen tussen verschillende hersengebieden worden gestimuleerd en dat ondersteunt het overwinnen van angsten en depressies en bevordert het probleemoplossend vermogen.</p>
+                <a href="https://en.m.wikipedia.org/wiki/Psychedelic_microdosing" target="_blank" class="btn btn-success">Meer lezen over Microdosing</a>
+            </div>
+            <img class="w-50" src="{{asset("img/magic-mushrooms.jfif")}}" alt="">
+        </div>
+    </div>
+
 </x-user.layout>

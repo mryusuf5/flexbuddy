@@ -4,7 +4,7 @@
             <div class="col-lg-3">
                 <a href="{{route('productcategories.index')}}" class="text-decoration-none
                 {{Route::is('productcategories.index') ? 'text-success' : 'text-dark'}}">
-                    <h1 class="h2 pb-4">Categories</h1>
+{{--                    <h1 class="h2 pb-4">Categories</h1>--}}
                 </a>
                 <x-user.categories :productcategories="$productcategories"></x-user.categories>
             </div>

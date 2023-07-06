@@ -7,7 +7,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped" style="min-width: 650px;">
+                        <table class="table table-striped" style="min-width: 1000px;">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -21,25 +21,25 @@
                             @foreach(Session::get('cart') as $index => $cart)
                                 <tr>
                                     <td>
-                                        <div class="d-flex align-items-center">
-                                            <a href="{{route('userSingleProduct', $cart['product']->id)}}" class="mr-2">
+                                        <div class="d-flex align-items-center gap-4">
+                                            <a href="{{route('userSingleProduct', $cart['product']->id)}}">
                                                 <img style="height: 150px; object-fit: contain"
                                                      src="{{asset('img/product/' . $cart['product']->image)}}">
                                             </a>
                                             <div>
                                                 <h5>{{$cart['product']->name}}</h5>
-                                                <h6>{{$cart['product']->description}}</h6>
+                                                <h6>{!! $cart['product']->description !!}</h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <h4>&euro; {{number_format($cart['product']->price, 2, ',', '.')}}</h4>
+                                        <h4>&euro;&nbsp;{{number_format($cart['option']->price, 2, ',', '.')}}</h4>
                                     </td>
                                     <td>
                                         <h4>{{$cart['amount']}}</h4>
                                     </td>
                                     <td>
-                                        <h4>&euro; {{number_format($cart['amount'] * $cart['product']->price,
+                                        <h4>&euro;&nbsp;{{number_format($cart['amount'] * $cart['option']->price,
                                                                                  2, ',', '.')}}</h4>
                                     </td>
                                     <td>
@@ -62,8 +62,8 @@
                         <div class="form-group"></div>
                         <div class="">
                             <p>Products: &euro; {{number_format($totalProductsCost, 2, ',', '.')}}</p>
-                            <p>Shipping costs: &euro; {{number_format(16.95, 2, ',', '.')}}</p>
-                            <h4>Total: &euro; {{number_format($totalProductsCost + 16.95, 2, ',', '.')}}</h4>
+                            <p>Shipping costs: &euro; {{number_format(4.15, 2, ',', '.')}}</p>
+                            <h4>Total: &euro; {{number_format($totalProductsCost + 4.15, 2, ',', '.')}}</h4>
                             <a href="{{route('checkout.index')}}" class="btn btn-success mt-2 w-100">Checkout</a>
                         </div>
                     </div>

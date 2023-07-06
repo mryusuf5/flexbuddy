@@ -12,6 +12,7 @@
     <meta name="author" content="Yusuf Yildiz" />
     <script src="https://kit.fontawesome.com/e0462e4fee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('css/template/style.css')}}">
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body class="">
     <nav class="pcoded-navbar  ">
@@ -104,12 +105,14 @@
         </form>
     </div>
 
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="{{asset('js/template/vendor-all.js')}}"></script>
     <script src="{{asset('js/template/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/template/pcoded.js')}}"></script>
     <script src="{{asset('js/template/dashboard-main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{asset('js/admin/script.js')}}"></script>
+    @yield("scripts")
 </body>
 
 </html>

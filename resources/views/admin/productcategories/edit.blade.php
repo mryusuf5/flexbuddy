@@ -28,8 +28,6 @@
                 <tr class="text-center">
                     <th>#</th>
                     <th>Naam</th>
-                    <th>Beschrijving</th>
-                    <th>Prijs</th>
                     <th>Acties</th>
                 </tr>
             </thead>
@@ -43,8 +41,6 @@
                             </div>
                         </td>
                         <td>{{$product->name}}</td>
-                        <td>{{$product->description}}</td>
-                        <td>&euro; {{number_format($product->price, 2, ',', '.')}}</td>
                         <td>
                             <div class="d-flex justify-content-center dropdown">
                                 <i class="fa-solid fa-ellipsis-vertical" style="font-size: 1.5rem; cursor: pointer" data-toggle="dropdown"></i>
@@ -83,12 +79,12 @@
                         <div class="form-group">
                             <input type="text" placeholder="Naam" name="name" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="price" placeholder="Prijs" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="description" cols="30" rows="10" class="form-control" placeholder="Beschrijving"></textarea>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <input type="text" name="price" placeholder="Prijs" class="form-control">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <textarea name="description" cols="30" rows="10" class="form-control" placeholder="Beschrijving"></textarea>--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <input type="file" name="image" class="form-control">
                         </div>
