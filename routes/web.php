@@ -40,6 +40,8 @@ Route::get("/veel-gestelde-vragen", function(){
     return view("user.faq");
 })->name("faq");
 
+Route::get("/success", [OrdersController::class, "success"])->name("success");
+
 Route::get('/login', [UserController::class, 'loginView'])->name('loginView');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
