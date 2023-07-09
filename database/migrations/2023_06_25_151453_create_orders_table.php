@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone_number');
-            $table->string('address');
-            $table->string('house_number');
-            $table->string('country');
-            $table->string('zipcode');
-            $table->string('city');
-            $table->string("is_paid");
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('house_number')->nullable();
+            $table->string('country')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('city')->nullable();
+            $table->string("is_paid")->nullable();
+            $table->string("total")->nullable();
             $table->timestamps();
         });
     }

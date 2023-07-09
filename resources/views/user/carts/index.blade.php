@@ -61,9 +61,9 @@
                     <div class="d-flex justify-content-md-between gap-md-0 gap-4 flex-md-row flex-column">
                         <div class="form-group"></div>
                         <div class="">
-                            <p>Products: &euro; {{number_format($totalProductsCost, 2, ',', '.')}}</p>
-                            <p>Shipping costs: &euro; {{number_format(4.15, 2, ',', '.')}}</p>
-                            <h4>Total: &euro; {{number_format($totalProductsCost + 4.15, 2, ',', '.')}}</h4>
+                            <p>Products: &euro;&nbsp;{{number_format($totalProductsCost, 2, ',', '.')}}</p>
+                            <p>Shipping costs: &euro;&nbsp;{{number_format(4.15, 2, ',', '.')}}</p>
+                            <h4>Total: &euro;&nbsp;{{number_format($totalProductsCost + 4.15, 2, ',', '.')}}</h4>
                             <a href="{{route('checkout.index')}}" class="btn btn-success mt-2 w-100">Checkout</a>
                         </div>
                     </div>

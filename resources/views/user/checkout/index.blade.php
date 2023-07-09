@@ -65,13 +65,6 @@
                 <p class="text-danger">@error("over18"){{$message}}@enderror</p>
             </div>
 
-            <div class="form-group col-md-5 col-10">
-                <label for="">Betalen met ideal:</label>
-                <select name="bank" id="" class="form-control">
-                    {{readfile("https://transaction.digiwallet.nl/ideal/getissuers?ver=4&format=html")}}
-                </select>
-            </div>
-
             <div class="form-group col-lg-5 col-12">
                 <input type="submit" class="btn btn-success w-100" value="Checkout">
             </div>
